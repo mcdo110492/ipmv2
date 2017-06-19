@@ -1,0 +1,90 @@
+<div id="e-commerce-products" class="page-layout carded fullwidth" layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+
+        <!-- CONTENT HEADER -->
+        <div class="header" layout="row" layout-align="space-between center">
+            <div class="white-fg" layout="column" layout-align="start start">
+                <div class="h1" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-cube-outline"></md-icon>
+                    <span>Lunch Box</span>
+                </div>
+                <div class="product-count secondary-text">
+                    <span>Total lunch box:</span>
+                    <span>{{vm.lists.count}}</span>
+                </div>
+            </div>
+
+            <div class="search" layout="row" layout-align="start center" flex>
+                <md-icon md-font-icon="icon-magnify" class="white-text icon search-icon"></md-icon>
+                <input id="e-commerce-products-search" class="search-input" type="text" ng-model="vm.query.filter" ng-model-options="{debounce:300}" placeholder="Search" flex>
+            </div>
+
+            <div>
+                <md-button class="md-raised md-background md-button md-default-theme md-ink-ripple" aria-label="Add New Button" ng-click="vm.add($event)" >Add New Lunch Box</md-button>
+            </div>
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" layout="column" flex>
+
+            <!-- CONTENT TOOLBAR -->
+
+            <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <div class="content fullpage-datatable" layout="column" flex>
+
+                <md-table-container>
+                    <table md-table md-progress="vm.promise">
+                        <thead md-head md-order="vm.query.order" md-on-reorder="vm.getLists">
+                            <tr md-row>
+                                <th md-column md-order-by="order"><span>Lunch Box Name</span></th>
+                                <th md-column ><span>Gadget(s)</span></th>
+                                <th md-column><span>Actions</span></th>
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                            <tr ng-if="vm.lists.count == 0" md-row>
+                                <td md-cell>No record(s) found.</td>
+                                <td md-cell></td>
+                                <td md-cell></td>
+                            </tr>
+                            <tr md-row ng-repeat="r in vm.lists.data">
+                                <td md-cell>
+                                    {{ r.lunchbox || 'empty' }}
+                                </td>
+                                <td md-cell>
+                                    <ul>
+                                        <li ng-repeat="g in ::r.gadgets">{{g.gadget_code}} - {{g.gadget_model}} - {{g.gadget_type}}</li>
+                                    </ul>
+                                </td>
+                                <td md-cell>
+                                    <md-button class="edit-button md-icon-button" aria-label="EDIT" ui-sref="app.lunch-box-details({id:r.lunchbox_id,name:r.lunchbox})">
+                                    <md-tooltip md-direction="top" md-autohide="true">
+                                      Click to View/Update Details
+                                    </md-tooltip>
+                                    <md-icon md-font-icon="icon-dots-horizontal" class="s16"></md-icon></md-button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+                <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 20 , 50 , 100]" md-page="vm.query.page" md-total="{{vm.lists.count}}" md-on-paginate="vm.getLists" md-page-select></md-table-pagination>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

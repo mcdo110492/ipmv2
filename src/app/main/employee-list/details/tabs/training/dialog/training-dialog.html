@@ -1,0 +1,78 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="insertForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">Save Training/Seminar</span>
+                <md-button class="md-icon-button" ng-click="edcvm.closeDialog()">
+                    <md-tooltip><span>Close</span></md-tooltip>
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <md-input-container class="md-block">
+                <label>Nature</label>
+                <input name="training_nature" ng-model="edcvm.details.training_nature" required md-autofocus>
+                <div ng-messages="insertForm.training_nature.$error" ng-show="insertForm.training_nature.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Title</label>
+                <input name="training_title" ng-model="edcvm.details.training_title" required>
+                <div ng-messages="insertForm.training_title.$error" ng-show="insertForm.training_title.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+             <div layout-xs="column" layout="row">
+                <div flex class="date-container">
+                    <label>Training Period From</label>
+                    <md-input-container>
+                        <md-datepicker name="training_period_from" flex ng-model="edcvm.details.training_period_from" md-placeholder="Training Period From" required></md-datepicker>
+                        <div ng-messages="insertForm.training_period_from.$error" ng-show="insertForm.training_period_from.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>This is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex class="date-container">
+                    <label>Training Period To</label>
+                    <md-input-container>
+                        <md-datepicker name="training_period_to" flex ng-model="edcvm.details.training_period_to" md-placeholder="Training Period To" required></md-datepicker>
+                        <div ng-messages="insertForm.training_period_to.$error" ng-show="insertForm.training_period_to.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>This is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <div ng-if="edcvm.loader">
+                <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <md-button type="submit" ng-if="!edcvm.loader" ng-click="edcvm.save()"
+                           class="send-button md-accent md-raised"
+                           ng-disabled="insertForm.$invalid || insertForm.$pristine"
+                           aria-label="SAVE">
+                    Save
+                </md-button>
+            </div>
+
+            <div layout="row">
+                <md-button class="send-button md-warn md-raised"
+                           aria-label="Close Button" ng-click="edcvm.closeDialog()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

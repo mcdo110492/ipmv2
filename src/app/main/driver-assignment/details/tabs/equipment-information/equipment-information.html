@@ -1,0 +1,24 @@
+<div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+    <form name="equipmentInfo" novalidate>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+              <label>Equipment</label>
+              <md-select name="equipment_id" ng-model="vm.details.equipment_id" placeholder="Equipment" required>
+                <md-option ng-value="r.equipment_id" ng-repeat="r in vm.equipments">Body Number: {{ r.body_no }} - Code: {{r.equipment_code}} - Model: {{r.equipment_model}} - Capacity: {{r.equipment_capacity}} </md-option>
+              </md-select>
+              <div ng-messages="equipmentInfo.equipment_id.$error" ng-show="equipmentInfo.equipment_id.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                    <div ng-message="unique">
+                        <span>This equipment is not available.</span>
+                    </div>
+              </div>
+          </md-input-container>
+        </div>
+  
+        <div layout="row" layout-align="center end">
+            <md-button class="md-raised md-accent" ng-disabled="equipmentInfo.$invalid" ng-click="equipmentInfo.$valid && vm.save()" aria-label="Save Equipment Info" md-no-ink="true">Save Changes</md-button>
+          </div>
+    </form>
+</div>

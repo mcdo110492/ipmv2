@@ -1,0 +1,126 @@
+<div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+    <form name="personalInfo" novalidate>
+        <md-input-container class="md-block">
+            <label>Employee Number</label>
+            <input type="text" ng-model="vm.personal.employee_no" readonly>
+        </md-input-container>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+              <label>First Name</label>
+              <input type="text" name="firstname" ng-model="vm.personal.firstname" required>
+              <div ng-messages="personalInfo.firstname.$error" ng-show="personalInfo.firstname.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+              <label>Middle Name</label>
+              <input type="text" name="middlename" ng-model="vm.personal.middlename" required>
+              <div ng-messages="personalInfo.middlename.$error" ng-show="personalInfo.middlename.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+              <label>Last Name</label>
+              <input type="text" name="lastname" ng-model="vm.personal.lastname" required>
+              <div ng-messages="personalInfo.lastname.$error" ng-show="personalInfo.lastname.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+        </div>
+
+        <div layout="row">
+          <md-input-container class="md-block" flex="33">
+            <md-datepicker name="dob" ng-model="vm.personal.dob" placeholder="Birthday" required></md-datepicker>
+            <div ng-messages="personalInfo.dob.$error" ng-show="personalInfo.dob.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+              <label>Place of Birth</label>
+              <input type="text" name="pob" ng-model="vm.personal.pob">
+          </md-input-container>
+        </div>
+
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+              <label>Height</label>
+              <input type="text" name="weight" ng-model="vm.personal.height" >
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+              <label>Weight</label>
+              <input type="text" name="weight" ng-model="vm.personal.weight" >
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+              <label>Blood Type</label>
+              <input type="text" name="blood" ng-model="vm.personal.blood" >
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+              <label>Distinguishin Mark</label>
+              <input type="text" name="distinguishing_mark" ng-model="vm.personal.distinguishing_mark" >
+          </md-input-container>
+        </div>
+
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+              <label>Civil Status</label>
+              <input type="text" name="civil_status" ng-model="vm.personal.civil_status" >
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+              <label>Citizenship</label>
+              <input type="text" name="citizenship" ng-model="vm.personal.citizenship" >
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+              <label>Religion</label>
+              <input type="text" name="religion" ng-model="vm.personal.religion" >
+          </md-input-container>
+        </div>
+
+        <div layout="row" layout-align="center end">
+            <md-button class="md-raised md-accent" ng-disabled="personalInfo.$invalid" ng-click="personalInfo.$valid && vm.save()" aria-label="Save Personal Info" md-no-ink="true">Save Changes</md-button>
+          </div>
+    </form>
+</div>
+<br>
+<div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+    <form name="uploadForm" class="md-inline-form" novalidate>
+      <div layout="row" flex>
+        <label>Select Image File (max: 3mb)</label>
+      </div>
+      <br> 
+      <div layout="row" flex>
+        <md-button class="md-raised md-accent"  aria-label="Upload" md-no-ink="true" ng-click="vm.openUpload()"><label>UPLOAD FILE (jpg,jpeg)</label></md-button>
+        <input id="file-input1" name="userfile" type="file" nv-file-select="" uploader="vm.uploader" style="display:none;" />
+      </div>
+ 
+      <md-table-container>
+        <table md-table>
+          <tbody md-body>
+            <tr md-row ng-repeat="item in vm.uploader.queue">
+              <td md-cell>
+                  <div ng-show="vm.uploader.isHTML5" ng-thumb="{ file: item._file, height: 100, width:100 }"></div>
+              </td>
+              <td>
+                  <strong>{{ item.file.name }}</strong><br>
+                  Size: {{ item.file.size/1000/1000 |number:3 }} MB<br>
+                  <div class="item-progress-box">
+                        <md-progress-linear md-mode="determinate" value="{{item.progress}}"></md-progress-linear>
+                        <div class="item-progress" ng-style="{ 'width': item.progress + '%' }"></div>
+                  </div><br>
+                  <md-button class="md-raised md-primary" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess || itemForm.$invalid" class="md-raised md-teal-500-bg white-fg ">Upload</md-button>
+                  <md-button ng-click="item.cancel()" ng-disabled="!item.isUploading" class="md-raised md-primary"  aria-label="Cancel">Cancel</md-button>
+                  <md-button ng-click="item.remove()" class="md-raised md-warn"   aria-label="Remove">Remove</md-button>
+              </td>
+            </tr>
+                    </tbody>
+                </table>
+              </md-table-container>
+    </form>
+</div>

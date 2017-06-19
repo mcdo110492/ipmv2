@@ -1,0 +1,154 @@
+<div id="employee-details" class="page-layout simple tabbed" layout="column">
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="start center">
+        <div class="white-fg" layout="row" layout-align="start center" flex>
+            <md-button class="goto-products-button md-icon-button" aria-label="Go to lists" ui-sref="app.trip-ticket">
+                <md-icon md-font-icon="icon-arrow-left"></md-icon>
+            </md-button>
+
+            <div layout="row" layout-align="start center">
+                
+                <div layout="column" layout-align="start start">
+                    <div class="h2">
+                        <span>Trip Ticket New</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content">
+
+       <div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+            <form name="tripTicketInfo" novalidate>
+                <div layout="row">
+                  <md-input-container class="md-block">
+                    <md-datepicker name="dispatch_date" ng-model="vm.data.dispatch_date" placeholder="Date"  md-min-date="vm.currentDate" ng-disabled="true" required></md-datepicker>
+                    <div ng-messages="tripTicketInfo.dob.$error" ng-show="tripTicketInfo.dob.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>This is required</span>
+                            </div>
+                      </div>
+                  </md-input-container>
+                  <div flex>
+                        <mdp-time-picker mdp-auto-switch="true" name="dispatch_time" ng-model="vm.data.dispatch_time" mdp-format="HH:mm" mdp-disabled="true" required>
+                            <md-tooltip md-direction="top" md-visible="true">Time</md-tooltip>
+                            <div ng-messages="tripTicketInfo.dispatch_time.$error" role="alert">
+                            <div ng-message="required">
+                                <span>This is required.</span>
+                            </div>
+                            <div ng-message="format">
+                                <span>Invalid format</span>
+                            </div>
+                            </div>
+                        </mdp-time-picker>
+                  </div>
+                </div>
+                <md-input-container class="md-block">
+                    <label>Trip Ticket Number</label>
+                    <input type="text" name="trip_ticket_no" ng-model-options="{debounce:300}" ng-model="vm.data.trip_ticket_no" unique-validation url-path="{{vm.urlPath}}" key-field="trip_ticket_no" required>
+                    <div ng-messages="tripTicketInfo.trip_ticket_no.$error" ng-show="tripTicketInfo.trip_ticket_no.$touched" role="alert">
+                        <div ng-message="required">
+                            <span>This is required</span>
+                        </div>
+                        <div ng-message="unique">
+                            <span>This trip ticket number is not available.</span>
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Shift</label>
+                    <md-select name="shift_id" ng-model="vm.data.shift_id" md-on-open="vm.loadShift()" required>
+                        <md-select-header class="demo-select-header">
+                                <input ng-model="vm.searchShift" ng-keydown="$event.stopPropagation()" type="search" placeholder="Search for Shift" class="md-text">
+                        </md-select-header>
+                      <md-option ng-value="s.shift_id" ng-repeat="s in vm.shift | filter:vm.searchShift" ng-click="vm.getShiftInformation(s.shift_id)">Unit: {{ s.unit_name }} - Geofence Name: {{s.geofence_name}} - Collection Schedule: {{s.collection_schedule}} </md-option>
+                    </md-select>
+                    <div ng-messages="tripTicketInfo.shift_id.$error" ng-show="tripTicketInfo.shift_id.$touched" role="alert">
+                        <div ng-message="required">
+                            <span>This is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Equipment (Body Number)</label>
+                    <md-select name="equipment_id" ng-model="vm.data.equipment_id"  required>
+                        <md-select-header class="demo-select-header">
+                                <input ng-model="vm.searchBodyNumber" ng-keydown="$event.stopPropagation()" type="search" placeholder="Search for Body Number" class="md-text">
+                        </md-select-header>
+                      <md-option ng-value="e.equipment_id" ng-repeat="e in vm.equipment | filter:vm.searchBodyNumber">{{ e.body_no }}</md-option>
+                    </md-select>
+                    <div ng-messages="tripTicketInfo.equipment_id.$error" ng-show="tripTicketInfo.equipment_id.$touched" role="alert">
+                        <div ng-message="required">
+                            <span>This is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Driver</label>
+                    <md-select name="driver_id" ng-model="vm.data.driver_id"  required>
+                        <md-select-header class="demo-select-header">
+                                <input ng-model="vm.searchDriver" ng-keydown="$event.stopPropagation()" type="search" placeholder="Search for Driver" class="md-text">
+                        </md-select-header>
+                      <md-option ng-value="d.employee_id" ng-repeat="d in vm.driver | filter:vm.searchDriver">{{ d.employee_no }} - {{d.lastname}}, {{d.firstname}} {{d.middlename}}</md-option>
+                    </md-select>
+                    <div ng-messages="tripTicketInfo.driver_id.$error" ng-show="tripTicketInfo.driver_id.$touched" role="alert">
+                        <div ng-message="required">
+                            <span>This is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Lunch Box</label>
+                    <md-select name="trip_lunchbox_id" ng-model="vm.data.trip_lunchbox_id" md-on-open="vm.loadLunchBox()" required>
+                      <md-option ng-value="l.trip_lunchbox_id" ng-repeat="l in vm.lunchbox">{{ l.lunchbox }}</md-option>
+                    </md-select>
+                    <div ng-messages="tripTicketInfo.trip_lunchbox_id.$error" ng-show="tripTicketInfo.trip_lunchbox_id.$touched" role="alert">
+                        <div ng-message="required">
+                            <span>This is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Paleros</label>
+                    <md-select name="paleros" ng-model="vm.data.paleros" multiple  required>
+                        <md-select-header class="demo-select-header">
+                                <input ng-model="vm.searchPaleros" ng-keydown="$event.stopPropagation()" type="search" placeholder="Search for Paleros" class="md-text">
+                        </md-select-header>
+                      <md-option ng-value="p.employee_id" ng-repeat="p in vm.paleros | filter:vm.searchPaleros">{{ p.employee_no }} - {{p.lastname}}, {{p.firstname}} {{p.middlename}}</md-option>
+                    </md-select>
+                    <div ng-messages="tripTicketInfo.paleros.$error" ng-show="tripTicketInfo.paleros.$touched" role="alert">
+                        <div ng-message="required">
+                            <span>This is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Striker</label>
+                    <md-select name="striker" ng-model="vm.data.striker" multiple md-on-open="vm.loadStriker()">
+                        <md-select-header class="demo-select-header">
+                                <input ng-model="vm.searchStriker" ng-keydown="$event.stopPropagation()" type="search" placeholder="Search for Striker" class="md-text">
+                        </md-select-header>
+                      <md-option ng-value="st.striker_id" ng-repeat="st in vm.striker | filter:vm.searchStriker">{{ st.striker_no }} - {{st.striker_lname}}, {{st.striker_fname}} {{st.striker_mname}}</md-option>
+                    </md-select>
+                    <div ng-messages="tripTicketInfo.striker.$error" ng-show="tripTicketInfo.striker.$touched" role="alert">
+                        <div ng-message="required">
+                            <span>This is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
+                <div layout="row" layout-align="center end">
+                    <md-button class="md-raised md-accent" ng-disabled="tripTicketInfo.$invalid" ng-click="tripTicketInfo.$valid && vm.save()" aria-label="Save Trip Tciket Info" md-no-ink="true">Create</md-button>
+                  </div>
+            </form>
+        </div>
+
+           
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

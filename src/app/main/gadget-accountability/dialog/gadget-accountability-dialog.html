@@ -1,0 +1,71 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="insertForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">Assign Lunchbox - Date: {{dcvm.currentDate | date:'MMMM dd, y'}}</span>
+                <md-button class="md-icon-button" ng-click="dcvm.closeDialog()">
+                    <md-tooltip><span>Close</span></md-tooltip>
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <md-input-container class="md-block">
+                <label>Driver</label>
+                <md-select name="employee_id" ng-model="dcvm.details.employee_id" md-on-open="dcvm.loadDriver()" unique-validation key-field="employee_id" url-path="{{dcvm.urlPath}}" required>
+                    <md-select-header class="select-header">
+                           <input ng-model="dcvm.searchDriver" ng-keydown="$event.stopPropagation()" type="search" placeholder="Search for Driver" class="md-text">
+                     </md-select-header>
+                  <md-option ng-value="r.employee_id" ng-repeat="r in dcvm.driver | filter:dcvm.searchDriver">{{ r.employee_no }} - {{r.lastname}}, {{r.firstname}} {{r.middlename}}</md-option>
+                </md-select>
+                <div ng-messages="insertForm.employee_id.$error" ng-show="insertForm.employee_id.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                    <div ng-message="unique">
+                        <span>This data is unavailable.</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Lunchbox</label>
+                <md-select name="lunchbox_id" ng-model="dcvm.details.lunchbox_id" md-on-open="dcvm.loadLunchbox()" unique-validation key-field="lunchbox_id" url-path="{{dcvm.urlPath}}" required>
+                  <md-select-header class="select-header">
+                           <input ng-model="dcvm.searchLunchbox" ng-keydown="$event.stopPropagation()" type="search" placeholder="Search for Driver" class="md-text">
+                     </md-select-header>
+                  <md-option ng-value="l.lunchbox_id" ng-repeat="l in dcvm.lunchbox | filter:dcvm.searchLunchbox">{{ l.lunchbox }}</md-option>
+                </md-select>
+                <div ng-messages="insertForm.lunchbox_id.$error" ng-show="insertForm.lunchbox_id.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                    <div ng-message="unique">
+                        <span>This data is unavailable.</span>
+                    </div>
+                </div>
+            </md-input-container>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <div ng-if="dcvm.loader">
+                <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <md-button type="submit" ng-if="!dcvm.loader" ng-click="dcvm.save()"
+                           class="send-button md-accent md-raised"
+                           ng-disabled="insertForm.$invalid || insertForm.$pristine"
+                           aria-label="SAVE">
+                    Save
+                </md-button>
+            </div>
+
+            <div layout="row">
+                <md-button class="send-button md-warn md-raised"
+                           aria-label="Close Button" ng-click="dcvm.closeDialog()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

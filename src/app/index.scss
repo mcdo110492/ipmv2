@@ -1,0 +1,379 @@
+/**
+ *  Do not remove this comments bellow. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
+
+/**
+ *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector
+
+
+#e-commerce-products {
+
+    .center {
+
+        .header {
+            height: 136px !important;
+            min-height: 136px !important;
+            max-height: 136px !important;
+            padding: 24px 0;
+
+            .h1 {
+
+                md-icon {
+                    margin-right: 12px;
+                }
+            }
+
+            .product-count {
+                margin: 6px 0 0 36px;
+            }
+
+            .search {
+                position: relative;
+                padding-left: 24px;
+                max-width: 480px;
+
+                .search-icon {
+                    margin: 0 -24px 0 0;
+                }
+
+                .search-input {
+                    margin: 0 0 0 32px;
+                    background: none;
+                    font-size: 16px;
+                    line-height: 40px;
+                    height: 40px;
+                    color: #FFFFFF;
+                    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+                    transition: border-color 300ms ease;
+
+                    &:focus {
+                        border-color: rgba(255, 255, 255, 1);
+                    }
+
+                    &::-webkit-input-placeholder {
+                        color: rgba(255, 255, 255, 0.5);
+                    }
+                }
+            }
+        }
+
+        .content-card {
+
+            .toolbar {
+                padding: 8px;
+            }
+
+            .content {
+                padding: 0;
+
+                .product-image {
+                    width: 90px;
+                    height: 90px;
+                    border: 2px solid rgba(0, 0, 0, 0.12);
+                }
+        
+                .dataTables_wrapper {
+
+                    .dataTables_scrollHead {
+                        min-height: 64px;
+
+                        table {
+
+                            th {
+                                padding-top: 20px;
+                                padding-bottom: 20px;
+                            }
+                        }
+                    }
+
+                    .dataTables_scrollBody {
+
+                        
+
+                        .quantity-indicator {
+                            display: inline-block;
+                            vertical-align: middle;
+                            width: 8px;
+                            height: 8px;
+                            border-radius: 4px;
+                            margin-right: 8px;
+
+                            & + div {
+                                display: inline-block;
+                                vertical-align: middle;
+                            }
+                        }
+
+                        .edit-button {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+md-dialog {
+
+    &.task-dialog {
+        max-width: 720px;
+        width: 720px;
+
+        md-dialog-content {
+            display: block;
+            position: relative;
+        }
+
+        md-toolbar {
+
+            .title {
+                font-size: 17px;
+            }
+        }
+
+        md-input-container {
+
+            textarea {
+                min-height: 150px;
+            }
+        }
+
+        .date-container {
+            padding: 16px 0 24px 0;
+        }
+
+        .notes {
+
+            > label {
+                color: rgba(0, 0, 0, 0.54);
+            }
+
+            .mce-tinymce {
+                margin-top: 8px;
+            }
+        }
+
+        .tags {
+            margin: 8px 0;
+
+            label {
+                font-size: 11px;
+                color: rgba(0, 0, 0, 0.54);
+            }
+
+            .md-chips {
+
+                .md-chip {
+
+                    md-chip-template {
+
+                        .color {
+                            display: inline-block;
+                            position: relative;
+                            width: 8px;
+                            height: 8px;
+                            top: -1px;
+                            border-radius: 50%;
+                            margin: -2px 4px 0 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .attachment-list {
+            font-size: 13px;
+            padding-top: 16px;
+
+            .attachment {
+                background-color: rgba(0, 0, 0, 0.08);
+                border: 1px solid rgba(0, 0, 0, 0.12);
+                padding-left: 16px;
+                margin-top: 8px;
+                border-radius: 2px;
+
+                .filename {
+                    font-weight: 500;
+                }
+
+                .size {
+
+                }
+
+                .md-button {
+                    margin: 0;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        md-dialog-actions {
+            position: relative;
+            overflow-y: hidden;
+            overflow-x: auto;
+            justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.03);
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+        }
+    }
+}
+
+#employee-details {
+
+    .header {
+        height: 120px;
+        min-height: 120px;
+        max-height: 120px;
+
+        .goto-products-button {
+            margin-right: 16px;
+        }
+
+        .product-image {
+            overflow: hidden;
+            width: 56px;
+            height: 56px;
+            margin-right: 16px;
+            border: 3px solid rgba(0, 0, 0, 0.12);
+
+            img {
+                height: 100%;
+                width: auto;
+                max-width: none;
+            }
+        }
+
+        .subtitle {
+            margin: 6px 0 0 0;
+        }
+    }
+
+    .product-detail-form-container {
+        padding: 24px;
+
+        #product-image-uploader {
+            position: relative;
+
+            &.dropping {
+
+                .drop-text {
+                    display: flex;
+                }
+            }
+
+            .drop-text {
+                display: none;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                padding: 16px;
+                text-align: center;
+                border: 2px dashed rgba(0, 0, 0, 0.12);
+                background: #FFFFFF;
+                font-size: 20px;
+                z-index: 100;
+            }
+
+            .upload-button {
+                margin-bottom: 16px;
+            }
+
+            .product-image {
+                position: relative;
+                width: 200px;
+                height: 200px;
+                border: 1px solid rgba(0, 0, 0, 0.12);
+                margin: 8px;
+
+                &.uploading {
+
+                    .overlay {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        background: rgba(0, 0, 0, 0.87);
+                    }
+                }
+
+                .media {
+                    max-height: 100%;
+                }
+            }
+        }
+    }
+
+}
+
+
+.bottom {
+                margin-top: 8px;
+
+                .search {
+                    height: 48px;
+                    min-height: 48px;
+                    padding: 8px 8px 8px 16px;
+                    background: #FFFFFF;
+
+                    .icon {
+                        margin: 0;
+                    }
+
+                    input {
+                        padding-left: 16px;
+                        color: rgba(0, 0, 0, 0.54);
+                    }
+                }
+
+                .date-filter-box {
+                    background-color: white;
+                    height: 48px;
+                    padding-left: 16px;
+                    margin-left: 8px;
+
+                    .filter {
+
+                        md-datepicker {
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+
+
+// RESPONSIVE
+@media screen and (max-width: $layout-breakpoint-md) {
+
+    md-dialog {
+
+        &.task-dialog {
+            width: 80%;
+        }
+    }
+}
+
+@media screen and (max-width: $layout-breakpoint-sm) {
+
+    md-dialog {
+
+        &.task-dialog {
+            width: 90%;
+        }
+    }
+}
+

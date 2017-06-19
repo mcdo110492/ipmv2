@@ -1,0 +1,80 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="insertForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">Save License</span>
+                <md-button class="md-icon-button" ng-click="eldcvm.closeDialog()">
+                    <md-tooltip><span>Close</span></md-tooltip>
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <md-input-container class="md-block">
+                <label>License Number</label>
+                <input name="license_no" ng-model="eldcvm.details.license_no" required md-autofocus>
+                <div ng-messages="insertForm.license_no.$error" ng-show="insertForm.license_no.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>License Type</label>
+                <input name="license_type" ng-model="eldcvm.details.license_type" required>
+                <div ng-messages="insertForm.license_type.$error" ng-show="insertForm.license_type.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <div layout-xs="column" layout="row">
+                <div flex class="date-container">
+                    <label>Date Issued</label>
+                    <md-input-container>
+                        <md-datepicker name="date_issued" flex ng-model="eldcvm.details.date_issued" md-placeholder="Date Issued" required></md-datepicker>
+                        <div ng-messages="insertForm.date_issued.$error" ng-show="insertForm.date_issued.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>This is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div flex class="date-container">
+                    <label>Date Expired</label>
+                    <md-input-container>
+                        <md-datepicker name="date_expired" flex ng-model="eldcvm.details.date_expired" md-placeholder="Date Expired" required></md-datepicker>
+                        <div ng-messages="insertForm.date_expired.$error" ng-show="insertForm.date_expired.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>This is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <div ng-if="eldcvm.loader">
+                <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <md-button type="submit" ng-if="!eldcvm.loader" ng-click="eldcvm.save()"
+                           class="send-button md-accent md-raised"
+                           ng-disabled="insertForm.$invalid || insertForm.$pristine"
+                           aria-label="SAVE">
+                    Save
+                </md-button>
+            </div>
+
+            <div layout="row">
+                <md-button class="send-button md-warn md-raised"
+                           aria-label="Close Button" ng-click="eldcvm.closeDialog()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

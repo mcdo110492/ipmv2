@@ -1,0 +1,128 @@
+<div id="e-commerce-products" class="page-layout carded fullwidth" layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+
+        <!-- CONTENT HEADER -->
+        <div class="header" layout="row" layout-align="space-between center">
+            <div class="white-fg" layout="column" layout-align="start start">
+                <div class="h1" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-cube-outline"></md-icon>
+                    <span>Complaint</span>
+                </div>
+                <div class="product-count secondary-text">
+                    <span>Total complaint(s):</span>
+                    <span>{{vm.lists.count}}</span>
+                </div>
+            </div>
+
+            <div class="search" layout="row" layout-align="start center" flex>
+                <md-icon md-font-icon="icon-magnify" class="white-text icon search-icon"></md-icon>
+                <input id="e-commerce-products-search" class="search-input" type="text" ng-model="vm.query.filter" ng-model-options="{debounce:300}" placeholder="Search" flex>
+            </div>
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" layout="column" flex>
+
+            <!-- CONTENT TOOLBAR -->
+
+            <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <div class="content fullpage-datatable" layout="column" flex>
+
+                <md-table-container>
+                    <table md-table md-progress="vm.promise">
+                        <thead md-head md-order="vm.query.order" md-on-reorder="vm.getLists">
+                            <tr md-row>
+                                <th md-column md-order-by="order"><span>Complaint Number</span></th>
+                                <th md-column><span>Collection Type</span></th>
+                                <th md-column><span>Client</span></th>
+                                <th md-column><span>Client Type</span></th>
+                                <th md-column><span>Contact Number</span></th>
+                                <th md-column><span>Details</span></th>
+                                <th md-column><span>Location</span></th>
+                                <th md-column><span>Date</span></th>
+                                <th md-column><span>Status</span></th>
+                                <th md-column><span>Actions</span></th>
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                            <tr ng-if="vm.lists.count == 0" md-row>
+                                <td md-cell>No record(s) found.</td>
+                                <td md-cell></td>
+                                <td md-cell></td>
+                                <td md-cell></td>
+                                <td md-cell></td>
+                                <td md-cell></td>
+                                <td md-cell></td>
+                                <td md-cell></td>
+                                <td md-cell></td>
+                                <td md-cell></td>
+                            </tr>
+                            <tr md-row ng-repeat="r in vm.lists.data | orderBy:'-complaint_date' ">
+                                <td md-cell>
+                                    {{r.complaint_no}}
+                                </td>
+                                <td md-cell>
+                                    {{r.collection_type}}
+                                </td>
+                                <td md-cell>
+                                    {{r.client_name}}
+                                </td>
+                                <td md-cell>
+                                    {{r.client_type}}
+                                </td>
+                                <td md-cell>
+                                    {{r.contact_no}}
+                                </td>
+                                <td md-cell>
+                                    {{r.details}}
+                                </td>
+                                <td md-cell>
+                                    {{r.location}}
+                                </td>
+                                <td md-cell>
+                                    {{r.complaint_date | date:'MMMM dd, y'}}
+                                </td>
+                                <td md-cell>
+                                    <md-button class="md-warn md-mini"  aria-label="Pending" md-no-ink="true" ng-if="r.trip_ticket_id == 0">
+                                    <md-tooltip md-direction="top" md-autohide="true">
+                                      Waiting for the Dispatcher Approval
+                                    </md-tooltip>
+                                    Pending</md-button>
+                                    <md-button class="md-accent md-mini"  aria-label="Cleared" md-no-ink="true" ng-if="r.trip_ticket_id != 0" ng-click="vm.viewTripDetails($event,r.trip_ticket_id)">
+                                    <md-tooltip md-direction="top" md-autohide="true">
+                                      Click To View the Trip Ticket details
+                                    </md-tooltip>
+                                    Cleared</md-button>
+                                </td>
+                                <td md-cell>
+                                    <md-button class="edit-button md-icon-button" aria-label="EDIT" ng-click="vm.update($event,r)">
+                                    <md-tooltip md-direction="top" md-autohide="true">
+                                      Click to Update
+                                    </md-tooltip>
+                                    <md-icon md-font-icon="icon-pencil" class="s16"></md-icon></md-button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+                <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 20 , 50 , 100]" md-page="vm.query.page" md-total="{{vm.lists.count}}" md-on-paginate="vm.getLists" md-page-select></md-table-pagination>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

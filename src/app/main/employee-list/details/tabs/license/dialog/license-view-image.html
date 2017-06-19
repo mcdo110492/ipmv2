@@ -1,0 +1,26 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">License Number : {{eldcvm.data.license_no}}</span>
+                <md-button class="md-icon-button" ng-click="eldcvm.closeDialog()">
+                    <md-tooltip><span>Close</span></md-tooltip>
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+           <div layout="row">
+               <img ng-src="{{eldcvm.photoPath}}/{{eldcvm.data.image}}" alt="Image Here" style="width:100%;height:300px">
+           </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row">
+                <md-button class="send-button md-warn md-raised"
+                           aria-label="Close Button" ng-click="eldcvm.closeDialog()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+</md-dialog>

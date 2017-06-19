@@ -1,0 +1,59 @@
+<div id="employee-details" class="page-layout simple tabbed" layout="column">
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="start center">
+        <div class="white-fg" layout="row" layout-align="start center" flex>
+            <md-button class="goto-products-button md-icon-button" aria-label="Go to lists" ui-sref="app.driver-assignment">
+                <md-icon md-font-icon="icon-arrow-left"></md-icon>
+            </md-button>
+
+            <div layout="row" layout-align="start center">
+                <div class="product-image" hide-xs>
+                    <img ng-src="{{vm.photoPath}}/{{vm.details.image}}">
+                </div>
+
+                <div layout="column" layout-align="start start">
+                    <div class="h2">
+                      Driver: {{vm.details.lastname}}, {{vm.details.firstname}} {{vm.details.middlename}}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{vm.details.employee_no}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content">
+        <md-tabs md-dynamic-height>
+
+            <md-tab>
+                <md-tab-label>
+                    <span>Equipment</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div ng-include="'app/main/driver-assignment/details/tabs/equipment-information/equipment-information.html'"></div>
+                </md-tab-body>
+            </md-tab>
+
+
+            <md-tab ng-disabled="vm.details.driver_id == null" ng-click="vm.loadPaleros()">
+                <md-tab-label>
+                    <span>Paleros</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div ng-include="'app/main/driver-assignment/details/tabs/driver-paleros/driver-paleros.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            
+        </md-tabs>
+        
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

@@ -1,0 +1,92 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="insertForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">Save New Item Inventory</span>
+                <md-button class="md-icon-button" ng-click="dcvm.closeDialog()">
+                    <md-tooltip><span>Close</span></md-tooltip>
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <md-input-container class="md-block">
+                <label>Date of Inventory</label>
+                <md-datepicker name="date_inventory" flex ng-model="dcvm.details.date_inventory" md-placeholder="Date of Inventory" required></md-datepicker>
+                <div ng-messages="insertForm.date_inventory.$error" ng-show="insertForm.date_inventory.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Item(s) (Model Name - Model Type)</label>
+                <md-select name="item_id"  ng-model="dcvm.details.item_id"  required>
+                  <md-option ng-value="r.item_id" ng-repeat="r in dcvm.items">{{ r.model }} - {{ r.item_type.item_type }}</md-option>
+                </md-select>
+                <div ng-messages="insertForm.item_id.$error" ng-show="insertForm.item_id.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Quantity</label>
+                <input type="number" name="qty" ng-model="dcvm.details.qty" min="1" required>
+                <div ng-messages="insertForm.qty.$error" ng-show="insertForm.qty.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                    <div ng-message="min">
+                        <span>Minimum number is 1</span>
+                    </div>
+                    <div ng-message="number">
+                        <span>Number(s) only</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Status</label>
+                <md-select name="item_status_id"  ng-model="dcvm.details.item_status_id"  required>
+                  <md-option ng-value="r.item_status_id" ng-repeat="r in dcvm.item_status">{{ r.item_status }}</md-option>
+                </md-select>
+                <div ng-messages="insertForm.item_status_id.$error" ng-show="insertForm.item_status_id.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Details</label>
+                <textarea name="details" ng-model="dcvm.details.details" maxlength="200"></textarea>
+                <div ng-messages="insertForm.details.$error" ng-show="insertForm.details.$touched" role="alert">
+                    <div ng-message="maxlength">
+                        <span>Maximum character(s) is 200</span>
+                    </div>
+                </div>
+            </md-input-container>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <div ng-if="dcvm.loader">
+                <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <md-button type="submit" ng-if="!dcvm.loader" ng-click="dcvm.save()"
+                           class="send-button md-accent md-raised"
+                           ng-disabled="insertForm.$invalid || insertForm.$pristine"
+                           aria-label="SAVE">
+                    Save
+                </md-button>
+            </div>
+
+            <div layout="row">
+                <md-button class="send-button md-warn md-raised"
+                           aria-label="Close Button" ng-click="dcvm.closeDialog()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

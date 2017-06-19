@@ -1,0 +1,45 @@
+<div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+    <form name="contactInfo" novalidate>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+              <label>Present Address</label>
+              <input type="text" name="present_address" ng-model="civm.contact.present_address" required>
+              <div ng-messages="contactInfo.present_address.$error" ng-show="contactInfo.present_address.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+        </div>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+              <label>Provincial Address</label>
+              <input type="text" name="provincial_address" ng-model="civm.contact.provincial_address" required>
+              <div ng-messages="contactInfo.provincial_address.$error" ng-show="contactInfo.provincial_address.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+        </div>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+              <label>Mobile Number</label>
+              <input type="text" name="cel_no" ng-model="civm.contact.cel_no" required>
+              <div ng-messages="contactInfo.cel_no.$error" ng-show="contactInfo.cel_no.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+              <label>Telephone Number</label>
+              <input type="text" name="tel_no" ng-model="civm.contact.tel_no">
+          </md-input-container>
+        </div>
+
+        <div layout="row" layout-align="center end">
+            <md-button class="md-raised md-accent" ng-disabled="contactInfo.$invalid" ng-click="contactInfo.$valid && civm.save()" aria-label="Save Contact Info" md-no-ink="true">Save Changes</md-button>
+          </div>
+    </form>
+</div>

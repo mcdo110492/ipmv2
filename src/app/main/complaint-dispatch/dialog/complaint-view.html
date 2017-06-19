@@ -1,0 +1,61 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="insertForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">Trip Ticket Details</span>
+                <md-button class="md-icon-button" ng-click="dcvm.closeDialog()">
+                    <md-tooltip><span>Close</span></md-tooltip>
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+           <md-table-container>
+                    <table md-table md-progress="dcvm.promise">
+                        <thead md-head>
+                            <tr md-row>
+                                <th md-column ><span>Trip Ticket Number</span></th>
+                                <th md-column ><span>Unit</span></th>
+                                <th md-column ><span>Body Number</span></th>
+                                <th md-column ><span>Date & Time</span></th>
+                                <th md-column ><span>Geofence</span></th>
+                                <th md-column ><span>Driver</span></th>
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                            <tr md-row ng-repeat="r in dcvm.tripTicket">
+                                <td md-cell>
+                                    {{r.trip_ticket_no}}
+                                </td>
+                                <td md-cell>
+                                    {{r.unit_name}}
+                                </td>
+                                <td md-cell>
+                                    {{r.body_no}}
+                                </td>
+                                <td md-cell>
+                                    {{r.dispatch_date | date:'MMMM dd, yyyy'}} - {{r.dispatch_time}}
+                                </td>
+                                <td md-cell>
+                                    {{r.geofence_name}}
+                                </td>
+                                <td md-cell>
+                                    {{r.employee_no}} - {{r.lastname}}, {{r.firstname}} {{r.middlename}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row">
+                <md-button class="send-button md-warn md-raised"
+                           aria-label="Close Button" ng-click="dcvm.closeDialog()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -1,0 +1,47 @@
+<div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+  <md-button class="md-raised md-primary" aria-label="Add Education" md-no-ink="true" ng-click="edvm.openDialog($event)">Add New Education</md-button>
+    <md-table-container>
+      <table md-table md-progress="edvm.promise">
+          <thead md-head>
+              <tr md-row>
+                  <th md-column><span>School Name</span></th>
+                  <th md-column><span>Address</span></th>
+                  <th md-column><span>School Year</span></th>
+                  <th md-column><span>Degree</span></th>
+                  <th md-column><span>Honors/Awards</span></th>
+                  <th md-column><span>Major</span></th>
+                  <th md-column><span>Minor</span></th>
+                  <th md-column><span>Actions</span></th>
+              </tr>
+          </thead>
+              <tbody md-body>
+                  <tr md-row ng-repeat="e in edvm.lists.data">
+                    <td md-cell>
+                        {{e.school_name}}
+                    </td>
+                    <td md-cell>
+                        {{e.school_address}}
+                    </td>
+                    <td md-cell>
+                        {{e.school_year}}
+                    </td>
+                    <td md-cell>
+                        {{e.degree}}
+                    </td>
+                    <td md-cell>
+                        {{e.honors}}
+                    </td>
+                    <td md-cell>
+                        {{e.major}}
+                    </td>
+                    <td md-cell>
+                        {{e.minor}}
+                    </td>
+                    <td md-cell>
+                        <md-button class="edit-button md-icon-button" aria-label="Actions" ng-click="edvm.updateDialog($event,e)"><md-icon md-font-icon="icon-pencil" class="s16"></md-icon></md-button>
+                    </td>
+                  </tr>
+              </tbody>
+          </table>
+      </md-table-container>
+</div>

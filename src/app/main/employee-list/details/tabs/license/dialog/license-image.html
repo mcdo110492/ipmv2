@@ -1,0 +1,60 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="insertForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">Upload License Image</span>
+                <md-button class="md-icon-button" ng-click="eldcvm.closeDialog()">
+                    <md-tooltip><span>Close</span></md-tooltip>
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div layout="row" flex>
+              <label>Select Image File (max: 3mb)</label>
+            </div>
+            <div layout="row" flex>
+                
+            </div>
+                    <div layout="row" flex>
+                    <br>
+                    
+                    <md-button class="md-raised md-accent"  aria-label="Upload" md-no-ink="true" ng-click="eldcvm.openUpload()"><label>UPLOAD FILE (jpg,jpeg)</label></md-button>
+                    <input id="file-input" name="userfile1" type="file" nv-file-select="" uploader="eldcvm.uploader" style="display:none;" />
+                    </div>
+ 
+            <md-table-container>
+                <table md-table>
+                    <tbody md-body>
+                          <tr md-row ng-repeat="item in eldcvm.uploader.queue">
+                            <td md-cell>
+                                <div ng-show="eldcvm.uploader.isHTML5" ng-thumb="{ file: item._file, height: 100, width:100 }"></div>
+                            </td>
+                            <td>
+                                <strong>{{ item.file.name }}</strong><br>
+                                Size: {{ item.file.size/1000/1000 |number:3 }} MB<br>
+                                <div class="item-progress-box">
+                                      <md-progress-linear md-mode="determinate" value="{{item.progress}}"></md-progress-linear>
+                                      <div class="item-progress" ng-style="{ 'width': item.progress + '%' }"></div>
+                                </div><br>
+                                <md-button class="md-raised md-primary" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess || itemForm.$invalid" class="md-raised md-teal-500-bg white-fg ">Upload</md-button>
+                                <md-button ng-click="item.cancel()" ng-disabled="!item.isUploading" class="md-raised md-primary"  aria-label="Cancel">Cancel</md-button>
+                                <md-button ng-click="item.remove()" class="md-raised md-warn"   aria-label="Remove">Remove</md-button>
+                            </td>
+                          </tr>
+                    </tbody>
+                </table>
+              </md-table-container>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row">
+                <md-button class="send-button md-warn md-raised"
+                           aria-label="Close Button" ng-click="eldcvm.closeDialog()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

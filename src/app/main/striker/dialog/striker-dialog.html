@@ -1,0 +1,104 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="insertForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">Save Striker</span>
+                <md-button class="md-icon-button" ng-click="dcvm.closeDialog()">
+                    <md-tooltip><span>Close</span></md-tooltip>
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <md-input-container class="md-block" ng-if="dcvm.statusIndex == 0">
+                <label>Striker ID</label>
+                <input name="striker_no" ng-model-options="{debounce:300}" ng-model="dcvm.details.striker_no" unique-validation key-field="striker_no" url-path="{{dcvm.urlPath}}" required md-autofocus>
+                <div ng-messages="insertForm.striker_no.$error" ng-show="insertForm.striker_no.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                    <div ng-message="unique">
+                        <span>This data is unavailable.</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block" ng-if="dcvm.statusIndex == 1">
+                <label>Striker ID</label>
+                <input name="striker_number" ng-model="dcvm.details.striker_number" disabled>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>First Name</label>
+                <input name="striker_fname" ng-model="dcvm.details.striker_fname"  required>
+                <div ng-messages="insertForm.striker_fname.$error" ng-show="insertForm.striker_fname.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Middle Name</label>
+                <input name="striker_mname" ng-model="dcvm.details.striker_mname"  required>
+                <div ng-messages="insertForm.striker_mname.$error" ng-show="insertForm.striker_mname.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Last Name</label>
+                <input name="striker_lname" ng-model="dcvm.details.striker_lname"  required>
+                <div ng-messages="insertForm.striker_lname.$error" ng-show="insertForm.striker_lname.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <div flex class="date-container">
+                    <label>Birthday</label>
+                    <md-input-container>
+                        <md-datepicker name="striker_dob" flex ng-model="dcvm.details.striker_dob" md-placeholder="Birthday" required></md-datepicker>
+                        <div ng-messages="insertForm.striker_dob.$error" ng-show="insertForm.striker_dob.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>This is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            <div layout-xs="column" layout="row">
+                <div flex class="date-container">
+                    <label>Date of Employment</label>
+                    <md-input-container>
+                        <md-datepicker name="striker_date_employed" flex ng-model="dcvm.details.striker_date_employed" md-placeholder="Date of Employment" required></md-datepicker>
+                        <div ng-messages="insertForm.striker_date_employed.$error" ng-show="insertForm.striker_date_employed.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>This is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <div ng-if="dcvm.loader">
+                <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <md-button type="submit" ng-if="!dcvm.loader" ng-click="dcvm.save()"
+                           class="send-button md-accent md-raised"
+                           ng-disabled="insertForm.$invalid || insertForm.$pristine"
+                           aria-label="SAVE">
+                    Save
+                </md-button>
+            </div>
+
+            <div layout="row">
+                <md-button class="send-button md-warn md-raised"
+                           aria-label="Close Button" ng-click="dcvm.closeDialog()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/main/apps/mail/mail.controller.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">app/main/apps/mail/</a> mail.controller.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">17.14% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>12/70</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.56% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">17.14% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>12/70</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function ()
+{
+    'use strict';
+&nbsp;
+    angular
+        .module('app.mail')
+        .controller('MailController', MailController);
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function MailController($scope, $document, $timeout, $mdDialog, $mdMedia, $mdSidenav, Inbox)</span>
+    {
+<span class="cstat-no" title="statement not covered" >        var vm = this;</span>
+&nbsp;
+        // Data
+<span class="cstat-no" title="statement not covered" >        vm.accounts = {</span>
+            'creapond'    : 'johndoe@creapond.com',
+            'withinpixels': 'johndoe@withinpixels.com'
+        };
+<span class="cstat-no" title="statement not covered" >        vm.checked = [];</span>
+<span class="cstat-no" title="statement not covered" >        vm.colors = ['blue-bg', 'blue-grey-bg', 'orange-bg', 'pink-bg', 'purple-bg'];</span>
+<span class="cstat-no" title="statement not covered" >        vm.selectedAccount = 'creapond';</span>
+<span class="cstat-no" title="statement not covered" >        vm.selectedMail = {};</span>
+<span class="cstat-no" title="statement not covered" >        vm.toggleSidenav = toggleSidenav;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.responsiveReadPane = undefined;</span>
+<span class="cstat-no" title="statement not covered" >        vm.activeMailPaneIndex = 0;</span>
+<span class="cstat-no" title="statement not covered" >        vm.dynamicHeight = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.scrollPos = 0;</span>
+<span class="cstat-no" title="statement not covered" >        vm.scrollEl = angular.element('#content');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.inbox = Inbox.data;</span>
+<span class="cstat-no" title="statement not covered" >        vm.selectedMail = vm.inbox[0];</span>
+<span class="cstat-no" title="statement not covered" >        vm.selectedMailShowDetails = false;</span>
+&nbsp;
+        // Methods
+<span class="cstat-no" title="statement not covered" >        vm.checkAll = checkAll;</span>
+<span class="cstat-no" title="statement not covered" >        vm.closeReadPane = closeReadPane;</span>
+<span class="cstat-no" title="statement not covered" >        vm.composeDialog = composeDialog;</span>
+<span class="cstat-no" title="statement not covered" >        vm.isChecked = isChecked;</span>
+<span class="cstat-no" title="statement not covered" >        vm.replyDialog = replyDialog;</span>
+<span class="cstat-no" title="statement not covered" >        vm.selectMail = selectMail;</span>
+<span class="cstat-no" title="statement not covered" >        vm.toggleStarred = toggleStarred;</span>
+<span class="cstat-no" title="statement not covered" >        vm.toggleCheck = toggleCheck;</span>
+&nbsp;
+        //////////
+&nbsp;
+        // Watch screen size to activate responsive read pane
+<span class="cstat-no" title="statement not covered" >        $scope.$watch(<span class="fstat-no" title="function not covered" >function ()</span></span>
+        {
+<span class="cstat-no" title="statement not covered" >            return $mdMedia('gt-md');</span>
+        }, <span class="fstat-no" title="function not covered" >function (current)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            vm.responsiveReadPane = !current;</span>
+        });
+&nbsp;
+        // Watch screen size to activate dynamic height on tabs
+<span class="cstat-no" title="statement not covered" >        $scope.$watch(<span class="fstat-no" title="function not covered" >function ()</span></span>
+        {
+<span class="cstat-no" title="statement not covered" >            return $mdMedia('xs');</span>
+        }, <span class="fstat-no" title="function not covered" >function (current)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            vm.dynamicHeight = current;</span>
+        });
+&nbsp;
+        /**
+         * Select mail
+         *
+         * @param mail
+         */
+<span class="fstat-no" title="function not covered" >        function selectMail(mail)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            vm.selectedMail = mail;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $timeout(<span class="fstat-no" title="function not covered" >function ()</span></span>
+            {
+                // If responsive read pane is
+                // active, navigate to it
+<span class="cstat-no" title="statement not covered" >                if ( angular.isDefined(vm.responsiveReadPane) &amp;&amp; vm.responsiveReadPane )</span>
+                {
+<span class="cstat-no" title="statement not covered" >                    vm.activeMailPaneIndex = 1;</span>
+                }
+&nbsp;
+                // Store the current scrollPos
+<span class="cstat-no" title="statement not covered" >                vm.scrollPos = vm.scrollEl.scrollTop();</span>
+&nbsp;
+                // Scroll to the top
+<span class="cstat-no" title="statement not covered" >                vm.scrollEl.scrollTop(0);</span>
+            });
+        }
+&nbsp;
+        /**
+         * Close read pane
+         */
+<span class="fstat-no" title="function not covered" >        function closeReadPane()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            if ( angular.isDefined(vm.responsiveReadPane) &amp;&amp; vm.responsiveReadPane )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                vm.activeMailPaneIndex = 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $timeout(<span class="fstat-no" title="function not covered" >function ()</span></span>
+                {
+<span class="cstat-no" title="statement not covered" >                    vm.scrollEl.scrollTop(vm.scrollPos);</span>
+                }, 650);
+            }
+        }
+&nbsp;
+        /**
+         * Toggle starred
+         *
+         * @param mail
+         * @param event
+         */
+<span class="fstat-no" title="function not covered" >        function toggleStarred(mail, event)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            event.stopPropagation();</span>
+<span class="cstat-no" title="statement not covered" >            mail.starred = !mail.starred;</span>
+        }
+&nbsp;
+        /**
+         * Toggle checked status of the mail
+         *
+         * @param mail
+         * @param event
+         */
+<span class="fstat-no" title="function not covered" >        function toggleCheck(mail, event)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            if ( event )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                event.stopPropagation();</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var idx = vm.checked.indexOf(mail);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if ( idx &gt; -1 )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                vm.checked.splice(idx, 1);</span>
+            }
+            else
+            {
+<span class="cstat-no" title="statement not covered" >                vm.checked.push(mail);</span>
+            }
+        }
+&nbsp;
+        /**
+         * Return checked status of the mail
+         *
+         * @param mail
+         * @returns {boolean}
+         */
+<span class="fstat-no" title="function not covered" >        function isChecked(mail)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            return vm.checked.indexOf(mail) &gt; -1;</span>
+        }
+&nbsp;
+        /**
+         * Check all
+         */
+<span class="fstat-no" title="function not covered" >        function checkAll()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            if ( vm.allChecked )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                vm.checked = [];</span>
+<span class="cstat-no" title="statement not covered" >                vm.allChecked = false;</span>
+            }
+            else
+            {
+<span class="cstat-no" title="statement not covered" >                angular.forEach(vm.inbox, <span class="fstat-no" title="function not covered" >function (mail)</span></span>
+                {
+<span class="cstat-no" title="statement not covered" >                    if ( !isChecked(mail) )</span>
+                    {
+<span class="cstat-no" title="statement not covered" >                        toggleCheck(mail);</span>
+                    }
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                vm.allChecked = true;</span>
+            }
+        }
+&nbsp;
+        /**
+         * Open compose dialog
+         *
+         * @param ev
+         */
+<span class="fstat-no" title="function not covered" >        function composeDialog(ev)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            $mdDialog.show({</span>
+                controller         : 'ComposeDialogController',
+                controllerAs       : 'vm',
+                locals             : {
+                    selectedMail: undefined
+                },
+                templateUrl        : 'app/main/apps/mail/dialogs/compose/compose-dialog.html',
+                parent             : angular.element($document.body),
+                targetEvent        : ev,
+                clickOutsideToClose: true
+            });
+        }
+&nbsp;
+        /**
+         * Open reply dialog
+         *
+         * @param ev
+         */
+<span class="fstat-no" title="function not covered" >        function replyDialog(ev)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            $mdDialog.show({</span>
+                controller         : 'ComposeDialogController',
+                controllerAs       : 'vm',
+                locals             : {
+                    selectedMail: vm.selectedMail
+                },
+                templateUrl        : 'app/main/apps/mail/dialogs/compose/compose-dialog.html',
+                parent             : angular.element($document.body),
+                targetEvent        : ev,
+                clickOutsideToClose: true
+            });
+        }
+&nbsp;
+        /**
+         * Toggle sidenav
+         *
+         * @param sidenavId
+         */
+<span class="fstat-no" title="function not covered" >        function toggleSidenav(sidenavId)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            $mdSidenav(sidenavId).toggle();</span>
+        }
+    }
+})();</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 20 2016 13:47:46 GMT+0800 (PHT)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

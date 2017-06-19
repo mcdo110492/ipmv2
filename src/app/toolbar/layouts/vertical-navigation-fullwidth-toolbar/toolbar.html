@@ -1,0 +1,74 @@
+<div layout="row" layout-align="start center">
+    <div layout="row" layout-align="start center" flex>
+        <md-button id="navigation-toggle" class="md-icon-button" ng-click="vm.toggleSidenav('navigation')"
+                   hide-gt-sm aria-label="Toggle navigation" >
+            <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+        </md-button>
+        <md-menu-bar id="user-menu" ng-if="vm.userType == 1">
+            <md-menu md-position-mode="left bottom">
+                <md-button class="user-button" ng-click="vm.getProjects();$mdOpenMenu($event)" aria-label="Project settings">
+                    <div layout="row" layout-align="space-between center">
+                        <span class="username" hide-sm>{{$root.selectedProject.project_name}}</span>
+                        <md-icon md-font-icon="icon-chevron-down"
+                                 class="icon s16" hide-sm></md-icon>
+                    </div>
+                </md-button>
+
+                <md-menu-content width="5" >
+                    <md-menu-item class="md-indent" ng-if="vm.project.count == 0">
+                        <md-button>No Project Found(s)</md-button>
+                    </md-menu-item>
+                    <md-menu-item class="md-indent" ng-if="!vm.showLoader">
+                        <center>
+                            <md-progress-circular md-mode="indeterminate" value="" class="md-accent" md-diameter="48"></md-progress-circular>
+                        </center>
+                    </md-menu-item>
+                    <md-menu-item ng-repeat="p in vm.project.data" ng-if="$root.selectedProject.project_id != p.project_id" class="md-indent">
+                        <md-button ng-click="vm.selectProject(p)">{{p.project_name}}</md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-menu-bar>
+    
+        <div class="toolbar-separator"></div>
+    </div>
+
+    <div layout="row" layout-align="start center">
+        <md-progress-circular id="toolbar-progress" ng-if="$root.loadingProgress" class="md-accent"
+                              md-mode="indeterminate" md-diameter="32">
+        </md-progress-circular>
+
+        <md-menu-bar id="user-menu">
+            <md-menu md-position-mode="left bottom">
+                <md-button class="user-button" ng-click="$mdOpenMenu()" aria-label="User settings">
+                    <div layout="row" layout-align="space-between center">
+                        <div class="avatar-wrapper">
+                            <img md-menu-align-target class="avatar" ng-src="http://localhost/ipmrepository/profilePicture/{{vm.profileDetails.profilePic}}">
+                            <md-icon md-font-icon ng-class="vm.userStatus.icon"
+                                     ng-style="{'color': vm.userStatus.color }"
+                                     class="icon status s16">
+                            </md-icon>
+                        </div>
+                        <span class="username" hide-sm>{{vm.profileDetails.profileName}}</span>
+                        <md-icon md-font-icon="icon-chevron-down"
+                                 class="icon s16" hide-sm></md-icon>
+                    </div>
+                </md-button>
+
+                <md-menu-content width="3">
+                    <md-menu-item class="md-indent">
+                        <md-icon md-font-icon="icon-account" class="icon"></md-icon>
+                        <md-button>My Profile</md-button>
+                    </md-menu-item>
+
+                    <md-menu-divider></md-menu-divider>
+
+                    <md-menu-item class="md-indent">
+                        <md-icon md-font-icon="icon-logout" class="icon"></md-icon>
+                        <md-button ng-click="vm.logout()">Logout</md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-menu-bar>
+    </div>
+</div>

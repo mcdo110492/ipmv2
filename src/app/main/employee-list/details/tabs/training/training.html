@@ -1,0 +1,31 @@
+<div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+  <md-button class="md-raised md-primary" aria-label="Add Family" md-no-ink="true" ng-click="etsvm.openDialog($event)">Add New Training/Seminars</md-button>
+    <md-table-container>
+      <table md-table md-progress="etsvm.promise">
+          <thead md-head>
+              <tr md-row>
+                  <th md-column><span>Training/Seminar Nature</span></th>
+                  <th md-column><span>Title</span></th>
+                  <th md-column><span>Training Period</span></th>
+                  <th md-column><span>Actions</span></th>
+              </tr>
+          </thead>
+              <tbody md-body>
+                  <tr md-row ng-repeat="e in etsvm.lists.data">
+                    <td md-cell>
+                        {{e.training_nature}}
+                    </td>
+                    <td md-cell>
+                        {{e.training_title}}
+                    </td>
+                    <td md-cell>
+                        {{e.training_period_from | date:'MMMM dd, y'}} - {{e.training_period_to | date:'MMMM dd, y'}}
+                    </td>
+                    <td md-cell>
+                        <md-button class="edit-button md-icon-button" aria-label="Actions" ng-click="etsvm.updateDialog($event,e)"><md-icon md-font-icon="icon-pencil" class="s16"></md-icon></md-button>
+                    </td>
+                  </tr>
+              </tbody>
+          </table>
+      </md-table-container>
+</div>

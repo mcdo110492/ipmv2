@@ -1,0 +1,47 @@
+<div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+    <form name="governmentInfo" novalidate>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+              <label>SSS</label>
+              <input type="text" name="sss" ng-model="egvm.government.sss" required>
+              <div ng-messages="governmentInfo.sss.$error" ng-show="governmentInfo.sss.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+              <label>Pag - Ibig</label>
+              <input type="text" name="pag_ibig" ng-model="egvm.government.pag_ibig" >
+              <div ng-messages="governmentInfo.pag_ibig.$error" ng-show="governmentInfo.pag_ibig.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+        </div>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+              <label>PhilHealth</label>
+              <input type="text" name="philhealth" ng-model="egvm.government.philhealth" >
+              <div ng-messages="governmentInfo.philhealth.$error" ng-show="governmentInfo.philhealth.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+              <label>TIN</label>
+              <input type="text" name="tin" ng-model="egvm.government.tin" >
+              <div ng-messages="governmentInfo.tin.$error" ng-show="governmentInfo.tin.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+        </div>
+        <div layout="row" layout-align="center end">
+            <md-button class="md-raised md-accent" ng-disabled="governmentInfo.$invalid" ng-click="governmentInfo.$valid && egvm.save()" aria-label="Save Government Info" md-no-ink="true">Save Changes</md-button>
+          </div>
+    </form>
+</div>

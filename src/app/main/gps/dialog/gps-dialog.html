@@ -1,0 +1,71 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="insertForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">Add New Gadget</span>
+                <md-button class="md-icon-button" ng-click="dcvm.closeDialog()">
+                    <md-tooltip><span>Close</span></md-tooltip>
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <md-input-container class="md-block">
+                <label>Shift</label>
+                <md-select name="shift_id" ng-model-options="{debounce:300}" ng-model="dcvm.details.shift_id" unique-validation url-path="{{dcvm.urlPath}}" key-field="shift_id" key-id="{{dcvm.details.geofence_id}}"  required>
+                  <md-option ng-value="r.shift_id" ng-repeat="r in dcvm.shift">Unit: {{ r.unit_name }} - Body Number: {{r.body_no}} - Geofence Name: {{r.geofence_name}} - Collection Schedule: {{r.collection_schedule}} - Time: {{r.shift_time}}</md-option>
+                </md-select>
+                <div ng-messages="insertForm.shift_id.$error" ng-show="insertForm.shift_id.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                    <div ng-message="unique">
+                        <span>This data is unavailable.</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Collection Type</label>
+                <md-select name="collection_type_id" ng-model="dcvm.details.collection_type_id" required>
+                  <md-option ng-value="c.collection_type_id" ng-repeat="c in dcvm.collectionType">{{c.collection_type}}</md-option>
+                </md-select>
+                <div ng-messages="insertForm.collection_type_id.$error" ng-show="insertForm.collection_type_id.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Sector</label>
+                <input name="sector" ng-model="dcvm.details.sector" required>
+                <div ng-messages="insertForm.sector.$error" ng-show="insertForm.sector.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <div ng-if="dcvm.loader">
+                <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <md-button type="submit" ng-if="!dcvm.loader" ng-click="dcvm.save()"
+                           class="send-button md-accent md-raised"
+                           ng-disabled="insertForm.$invalid || insertForm.$pristine"
+                           aria-label="SAVE">
+                    Save
+                </md-button>
+            </div>
+
+            <div layout="row">
+                <md-button class="send-button md-warn md-raised"
+                           aria-label="Close Button" ng-click="dcvm.closeDialog()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

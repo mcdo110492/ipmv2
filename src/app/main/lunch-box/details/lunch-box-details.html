@@ -1,0 +1,66 @@
+<div id="employee-details" class="page-layout simple tabbed" layout="column">
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="start center">
+        <div class="white-fg" layout="row" layout-align="start center" flex>
+            <md-button class="goto-products-button md-icon-button" aria-label="Go to lists" ui-sref="app.lunch-box">
+                <md-icon md-font-icon="icon-arrow-left"></md-icon>
+            </md-button>
+
+            <div layout="row" layout-align="start center">
+                
+                <div layout="column" layout-align="start start">
+                    <div class="h2">
+                       {{vm.details.lunchbox}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content">
+        <div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+          <md-button class="md-raised md-primary" aria-label="Add Gadget" md-no-ink="true" ng-click="vm.add($event)">Add New Gadgets</md-button>
+            <md-table-container>
+              <table md-table md-progress="vm.promise">
+                  <thead md-head>
+                      <tr md-row>
+                          <th md-column><span>Gadget Code</span></th>
+                          <th md-column><span>Gadget Model</span></th>
+                          <th md-column><span>Gadget Type</span></th>
+                          <th md-column><span>Gadget Status</span></th>
+                          <th md-column><span>Status</span></th>
+                      </tr>
+                  </thead>
+                      <tbody md-body>
+                          <tr md-row ng-repeat="r in vm.lists.data">
+                            <td md-cell>
+                                {{r.gadget_code}}
+                            </td>
+                            <td md-cell>
+                                {{r.gadget_model}}
+                            </td>
+                            <td md-cell>
+                                {{r.gadget_type}}
+                            </td>
+                            <td md-cell>
+                                <md-button class="md-mini md-accent"  aria-label="Gadget Status Active" md-no-ink="true" ng-if="r.gadget_status == 1">Active</md-button>
+                                <md-button class="md-mini md-warn"  aria-label="Gadget Status Not Active" md-no-ink="true" ng-if="r.gadget_status == 2">Not Active</md-button>
+                            </td>
+                            <td md-cell>
+                                <md-button class="md-mini md-accent" ng-click="vm.changeStatus(r.lunchbox_gadget_id,r.gadget_id,2)"  aria-label="Active" md-no-ink="true" ng-if="r.lunch_box_gadget_status == 1">Active</md-button>
+                                <md-button class="md-mini md-warn"  ng-click="vm.changeStatus(r.lunchbox_gadget_id,r.gadget_id,1)" aria-label="Remove" md-no-ink="true" ng-if="r.lunch_box_gadget_status == 2">Removed</md-button>
+                            </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </md-table-container>
+        </div>
+        
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

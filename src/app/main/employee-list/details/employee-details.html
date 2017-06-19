@@ -1,0 +1,147 @@
+<div id="employee-details" class="page-layout simple tabbed" layout="column">
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="start center">
+        <div class="white-fg" layout="row" layout-align="start center" flex>
+            <md-button class="goto-products-button md-icon-button" aria-label="Go to lists" ui-sref="app.employee-list">
+                <md-icon md-font-icon="icon-arrow-left"></md-icon>
+            </md-button>
+
+            <div layout="row" layout-align="start center">
+                <div class="product-image" hide-xs>
+                    <img ng-src="{{vm.photoPath}}/{{vm.personal.image}}">
+                </div>
+
+                <div layout="column" layout-align="start start">
+                    <div class="h2">
+                       {{vm.personal.lastname}}, {{vm.personal.firstname}} {{vm.personal.middlename}}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{vm.personal.employee_no}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <md-tabs md-dynamic-height>
+
+            <md-tab>
+                <md-tab-label>
+                    <span>Personal Information</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div ng-include="'app/main/employee-list/details/tabs/personal-information/personal-information.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            <div ng-controller="EmployeeContactController as civm">
+            <md-tab ng-click="civm.loadContact()">
+                <md-tab-label>
+                    <span>Contact Information</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div ng-include="'app/main/employee-list/details/tabs/contact-information/contact-information.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="EmployeeEmploymentController as eivm">
+            <md-tab ng-click="eivm.loadEmployment()">
+                <md-tab-label>
+                    <span>Employment Information</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div ng-include="'app/main/employee-list/details/tabs/employment/employment.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="EmployeeEducationController as edvm">
+            <md-tab ng-click="edvm.loadEducation()">
+                <md-tab-label>
+                    <span>Education</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div ng-include="'app/main/employee-list/details/tabs/education/education.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="EmployeeGovernmentController as egvm">
+            <md-tab ng-click="egvm.loadGovernment()">
+                <md-tab-label>
+                    <span>Government Issued Number</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div ng-include="'app/main/employee-list/details/tabs/government/government.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="EmployeeLicenseController as elvm">
+            <md-tab ng-click="elvm.loadLicense()">
+                <md-tab-label>
+                    <span>License</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div ng-include="'app/main/employee-list/details/tabs/license/license.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="EmployeeFamilyController as efvm">
+            <md-tab ng-click="efvm.loadFamily()">
+                <md-tab-label>
+                    <span>Family Information</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div ng-include="'app/main/employee-list/details/tabs/family-information/family-information.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="EmployeeTrainingController as etsvm">
+            <md-tab ng-click="etsvm.loadTraining()">
+                <md-tab-label>
+                    <span>Training/Seminar</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div ng-include="'app/main/employee-list/details/tabs/training/training.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="EmployeeClubsController as ecvm">
+            <md-tab ng-click="ecvm.loadClub()">
+                <md-tab-label>
+                    <span>Club Information</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div ng-include="'app/main/employee-list/details/tabs/clubs/clubs.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="EmployeeAccountController as eavm">
+            <md-tab ng-click="eavm.loadAccount()">
+                <md-tab-label>
+                    <span>Account Settings</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div ng-include="'app/main/employee-list/details/tabs/account-settings/account-settings.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            
+        </md-tabs>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

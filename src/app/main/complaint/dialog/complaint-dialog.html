@@ -1,0 +1,107 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="insertForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title" ng-if="dcvm.indexstatus == 0">Add New Complaint</span>
+                <span class="title" ng-if="dcvm.indexstatus == 1">Update Complaint Number : {{dcvm.details.complaint_no}}</span>
+                <md-button class="md-icon-button" ng-click="dcvm.closeDialog()">
+                    <md-tooltip><span>Close</span></md-tooltip>
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <md-input-container class="md-block">
+                <label>Collection Type</label>
+                <md-select ng-model="dcvm.details.collection_type_id" md-autofocus required>
+                  <md-option ng-value="r.collection_type_id" ng-repeat="r in dcvm.collectionType">{{ r.collection_type }}</md-option>
+                </md-select>
+                <div ng-messages="insertForm.collection_type_id.$error" ng-show="insertForm.collection_type_id.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Client Name</label>
+                <input type="text" name="client_name" ng-model="dcvm.details.client_name" required>
+                <div ng-messages="insertForm.client_name.$error" ng-show="insertForm.client_name.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Client Type</label>
+                <input type="text" name="client_type" ng-model="dcvm.details.client_type" required>
+                <div ng-messages="insertForm.client_type.$error" ng-show="insertForm.client_type.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Contact Number</label>
+                <input type="text" name="contact_no" ng-model="dcvm.details.contact_no" required>
+                <div ng-messages="insertForm.contact_no.$error" ng-show="insertForm.contact_no.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Details</label>
+                <input type="text" name="details" ng-model="dcvm.details.details" required>
+                <div ng-messages="insertForm.details.$error" ng-show="insertForm.details.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Location</label>
+                <input type="text" name="location" ng-model="dcvm.details.location" required>
+                <div ng-messages="insertForm.location.$error" ng-show="insertForm.location.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <div layout-xs="column" layout="row">
+                <div flex class="date-container">
+                    <label>Date</label>
+                    <md-input-container>
+                        <md-datepicker name="complaint_date" flex ng-model="dcvm.details.complaint_date" md-placeholder="Date" required></md-datepicker>
+                        <div ng-messages="insertForm.complaint_date.$error" ng-show="insertForm.complaint_date.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>This is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <div ng-if="dcvm.loader">
+                <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <md-button type="submit" ng-if="!dcvm.loader" ng-click="dcvm.save()"
+                           class="send-button md-accent md-raised"
+                           ng-disabled="insertForm.$invalid || insertForm.$pristine"
+                           aria-label="SAVE">
+                    Save
+                </md-button>
+            </div>
+
+            <div layout="row">
+                <md-button class="send-button md-warn md-raised"
+                           aria-label="Close Button" ng-click="dcvm.closeDialog()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

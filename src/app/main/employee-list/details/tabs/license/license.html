@@ -1,0 +1,40 @@
+<div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+  <md-button class="md-raised md-primary" aria-label="Add License" md-no-ink="true" ng-click="elvm.openDialog($event)">Add New License</md-button>
+    <md-table-container>
+      <table md-table md-progress="elvm.promise">
+          <thead md-head>
+              <tr md-row>
+                  <th md-column><span>License Number</span></th>
+                  <th md-column><span>License Type</span></th>
+                  <th md-column><span>Date Issued</span></th>
+                  <th md-column><span>Date Expired</span></th>
+                  <th md-column><span>Image</span></th>
+                  <th md-column><span>Actions</span></th>
+              </tr>
+          </thead>
+              <tbody md-body>
+                  <tr md-row ng-repeat="r in elvm.lists.data">
+                    <td md-cell>
+                        {{r.license_no}}
+                    </td>
+                    <td md-cell>
+                        {{r.license_type}}
+                    </td>
+                    <td md-cell>
+                        {{r.date_issued | date:'MMMM dd, y'}}
+                    </td>
+                    <td md-cell>
+                       {{r.date_expired | date:'MMMM dd, y'}}
+                    </td>
+                    <td md-cell>
+                        <img class="product-image" ng-src="{{elvm.photoPath}}/{{r.license_file}}" alt="Image File" ng-click="elvm.openLicenseImage($event,r)">
+                    </td>
+                    <td md-cell>
+                        <md-button class="edit-button md-icon-button" aria-label="Actions" ng-click="elvm.updateDialog($event,r)"><md-tooltip md-direction="top" md-autohide="true">UPDATE</md-tooltip><md-icon md-font-icon="icon-pencil" class="s16"></md-icon></md-button>
+                        <md-button class="edit-button md-icon-button" aria-label="Upload" ng-click="elvm.uploadDialog($event,r.employee_license_id)"><md-tooltip md-direction="top" md-autohide="true">UPLOAD IMAGE FILE</md-tooltip><md-icon md-font-icon="icon-upload" class="s16"></md-icon></md-button>
+                    </td>
+                  </tr>
+              </tbody>
+          </table>
+      </md-table-container>
+</div>

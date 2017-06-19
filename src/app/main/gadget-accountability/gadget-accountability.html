@@ -1,0 +1,112 @@
+<div id="e-commerce-products" class="page-layout carded fullwidth" layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+
+        <!-- CONTENT HEADER -->
+        <div class="header" layout="row" layout-align="space-between center">
+            <div class="white-fg" layout="column" layout-align="start start">
+                <div class="h1" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-cube-outline"></md-icon>
+                    <span>Gadget Accountability</span>
+                </div>
+                <div class="product-count secondary-text">
+                    <span>Total gadget accountability:</span>
+                    <span>{{vm.lists.count}}</span>
+                </div>
+            </div>
+            <div>
+                <md-button class="md-raised md-background md-button md-default-theme md-ink-ripple" aria-label="Add New Button" ng-click="vm.add($event)" >Assign Lunchbox</md-button>
+            </div>
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" layout="column" flex>
+
+            <!-- CONTENT TOOLBAR -->
+
+            <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <div class="content fullpage-datatable" layout="column" flex>
+                <div layout="row" layout-align="start center" class="filter from" layout-padding>
+                    <span class="label">Date:</span>
+                    <md-datepicker ms-datepicker-fix ng-model="vm.query.filter" ng-change="vm.getLists()" md-placeholder="Select Date"></md-datepicker>
+                </div>
+                <md-table-container>
+                    <table md-table md-progress="vm.promise">
+                        <thead md-head md-order="vm.query.order" md-on-reorder="vm.getLists">
+                            <tr md-row>
+                                <th md-column md-order-by="order"><span>Trip Ticket Number</span></th>
+                                <th md-column ><span>Driver</span></th>
+                                <th md-column ><span>Lunch Box</span></th>
+                                <th md-column ><span>Gadgets</span></th>
+                                <th md-column ><span>Issued By</span></th>
+                                <th md-column ><span>Status</span></th>
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                            <tr ng-if="vm.lists.count == 0" md-row>
+                                <td md-cell>No record(s) found.</td>
+                                <td md-cell></td>
+                                <td md-cell></td>
+                                <td md-cell></td>
+                                <td md-cell></td>
+                                <td md-cell></td>
+                            </tr>
+                            <tr md-row ng-repeat="r in vm.lists.data">
+                                <td md-cell>
+                                    {{r.trip_ticket_no}}
+                                </td>
+                                <td md-cell>
+                                    {{r.employee_no}} - {{r.lastname}}, {{r.firstname}} {{r.middlename}}
+                                </td>
+                                <td md-cell>
+                                    {{r.lunchbox}}
+                                </td>
+                                <td md-cell>
+                                    <ul>
+                                        <li ng-repeat="g in ::r.gadgets">{{g.gadget_code}} - {{g.gadget_model}} - {{g.gadget_type}}</li>
+                                    </ul>
+                                </td>
+                                <td md-cell>
+                                    {{r.profile_name}}
+                                </td>
+                                <td md-cell>
+                                   <md-button class="md-mini md-accent" aria-label="Status" md-no-ink="true" ng-if="r.lunchbox_status == 1" ng-click="vm.update($event,r)">
+                                    <md-tooltip md-direction="top" md-autohide="true">
+                                      Click to Change Status
+                                    </md-tooltip>
+                                    Cleared</md-button>
+                                    <md-button class="md-mini md-warn" aria-label="Status" md-no-ink="true" ng-if="r.lunchbox_status == 2" ng-click="vm.update($event,r)" >
+                                    <md-tooltip md-direction="top" md-autohide="true">
+                                      Click to Change Status
+                                    </md-tooltip>
+                                    Not Cleared</md-button>
+                                    <md-button class="md-mini md-warn" aria-label="Status" md-no-ink="true" ng-if="r.lunchbox_status == 3" >
+                                    <md-tooltip md-direction="top" md-autohide="true">
+                                      Cancelled Status Cannot Be Changed
+                                    </md-tooltip>
+                                    Cancelled</md-button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+                <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 20 , 50 , 100]" md-page="vm.query.page" md-total="{{vm.lists.count}}" md-on-paginate="vm.getLists" md-page-select></md-table-pagination>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

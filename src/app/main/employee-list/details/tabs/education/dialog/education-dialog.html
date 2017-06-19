@@ -1,0 +1,80 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="insertForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">Save Education</span>
+                <md-button class="md-icon-button" ng-click="edcvm.closeDialog()">
+                    <md-tooltip><span>Close</span></md-tooltip>
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <md-input-container class="md-block">
+                <label>School Name</label>
+                <input name="school_name" ng-model="edcvm.details.school_name" required md-autofocus>
+                <div ng-messages="insertForm.school_name.$error" ng-show="insertForm.school_name.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>School Address</label>
+                <input name="school_address" ng-model="edcvm.details.school_address" required>
+                <div ng-messages="insertForm.school_address.$error" ng-show="insertForm.school_address.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>School Year</label>
+                <input name="school_year" ng-model="edcvm.details.school_year" required>
+                <div ng-messages="insertForm.school_year.$error" ng-show="insertForm.school_year.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Degree</label>
+                <input name="degree" ng-model="edcvm.details.degree">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Honors/Awards</label>
+                <input name="honors" ng-model="edcvm.details.honors">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Major</label>
+                <input name="major" ng-model="edcvm.details.major">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Minor</label>
+                <input name="minor" ng-model="edcvm.details.minor">
+            </md-input-container>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <div ng-if="edcvm.loader">
+                <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <md-button type="submit" ng-if="!edcvm.loader" ng-click="edcvm.save()"
+                           class="send-button md-accent md-raised"
+                           ng-disabled="insertForm.$invalid || insertForm.$pristine"
+                           aria-label="SAVE">
+                    Save
+                </md-button>
+            </div>
+
+            <div layout="row">
+                <md-button class="send-button md-warn md-raised"
+                           aria-label="Close Button" ng-click="edcvm.closeDialog()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

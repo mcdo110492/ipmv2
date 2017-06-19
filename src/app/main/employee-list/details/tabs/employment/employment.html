@@ -1,0 +1,81 @@
+<div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+    <form name="employmentInfo" novalidate>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+              <label>Position</label>
+              <md-select name="position_id" ng-model="eivm.employment.position_id" placeholder="Position" required>
+                <md-option ng-value="p.position_id" ng-repeat="p in eivm.position" ng-if="p.position_id != 3">{{ p.position_name }}</md-option>
+              </md-select>
+              <div ng-messages="employmentInfo.position_id.$error" ng-show="employmentInfo.position_id.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+        </div>
+        
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+            <md-datepicker name="date_employed" ng-model="eivm.employment.date_employed" placeholder="Contract Start" required></md-datepicker>
+            <div ng-messages="employmentInfo.date_employed.$error" ng-show="employmentInfo.date_employed.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+            <md-datepicker name="date_retired" ng-model="eivm.employment.date_retired" placeholder="Contract End" required></md-datepicker>
+            <div ng-messages="employmentInfo.date_retired.$error" ng-show="employmentInfo.date_retired.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+        </div>
+
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+              <label>Employment Status</label>
+              <md-select name="employment_status_id" ng-model="eivm.employment.employment_status_id" placeholder="Employment Status" required>
+                <md-option ng-value="es.employment_status_id" ng-repeat="es in eivm.employmentStatus">{{ es.employment_status }}</md-option>
+              </md-select>
+              <div ng-messages="employmentInfo.employment_status_id.$error" ng-show="employmentInfo.employment_status_id.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+              <label>Employee Status</label>
+              <md-select name="employee_status_id" ng-model="eivm.employment.employee_status_id" placeholder="Employee Status" required>
+                <md-option ng-value="esi.employee_status_id" ng-repeat="esi in eivm.employeeStatus">{{ esi.employee_status }}</md-option>
+              </md-select>
+              <div ng-messages="employmentInfo.employee_status_id.$error" ng-show="employmentInfo.employee_status_id.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+              </div>
+          </md-input-container>
+        </div>
+
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+            <label>Salary</label>
+            <input type="number" ng-model="eivm.employment.salary" name="salary">
+            <div ng-messages="employmentInfo.number.$error" ng-show="employmentInfo.number.$touched" role="alert">
+                    <div ng-message="number">
+                        <span>Number(s) only.</span>
+                    </div>
+              </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex>
+            <label>Remarks</label>
+            <input type="text" ng-model="eivm.employment.remarks" name="remarks">
+          </md-input-container>
+        </div>
+
+        <div layout="row" layout-align="center end">
+            <md-button class="md-raised md-accent" ng-disabled="employmentInfo.$invalid" ng-click="employmentInfo.$valid && eivm.save()" aria-label="Save Employment Info" md-no-ink="true">Save Changes</md-button>
+          </div>
+    </form>
+</div>

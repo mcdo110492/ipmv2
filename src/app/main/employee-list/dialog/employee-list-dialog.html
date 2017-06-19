@@ -1,0 +1,134 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="insertForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">Add New Employee</span>
+                <md-button class="md-icon-button" ng-click="dcvm.closeDialog()">
+                    <md-tooltip><span>Close</span></md-tooltip>
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <md-input-container class="md-block">
+                <label>Employee ID</label>
+                <input name="employee_no" ng-model-options="{debounce:300}" ng-model="dcvm.details.employee_no" unique-validation key-field="employee_no" url-path="{{dcvm.urlPath}}" required md-autofocus>
+                <div ng-messages="insertForm.employee_no.$error" ng-show="insertForm.employee_no.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                    <div ng-message="unique">
+                        <span>This data is unavailable.</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>First Name</label>
+                <input name="firstname" ng-model="dcvm.details.firstname"  required>
+                <div ng-messages="insertForm.firstname.$error" ng-show="insertForm.firstname.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Middle Name</label>
+                <input name="middlename" ng-model="dcvm.details.middlename"  required>
+                <div ng-messages="insertForm.middlename.$error" ng-show="insertForm.middlename.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Last Name</label>
+                <input name="lastname" ng-model="dcvm.details.lastname"  required>
+                <div ng-messages="insertForm.lastname.$error" ng-show="insertForm.lastname.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <div flex class="date-container">
+                    <label>Birthday</label>
+                    <md-input-container>
+                        <md-datepicker name="dob" flex ng-model="dcvm.details.dob" md-placeholder="Birthday" required></md-datepicker>
+                        <div ng-messages="insertForm.dob.$error" ng-show="insertForm.dob.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>This is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            <md-input-container class="md-block">
+                <label>Select Position</label>
+                <md-select name="position_id" ng-model="dcvm.details.position_id" md-on-open="dcvm.loadPosition()" required> 
+                  <md-option ng-value="p.position_id" ng-repeat="p in dcvm.position" ng-if="p.position_id != 3">{{ p.position_name }}</md-option>
+                </md-select>
+                <div ng-messages="insertForm.position_id.$error" ng-show="insertForm.position_id.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Select Employment Status</label>
+                <md-select name="employment_status_id" ng-model="dcvm.details.employment_status_id" md-on-open="dcvm.loadEmploymentStatus()" required> 
+                  <md-option ng-value="r.employment_status_id" ng-repeat="r in dcvm.employmentStatus">{{ r.employment_status }}</md-option>
+                </md-select>
+                <div ng-messages="insertForm.employment_status_id.$error" ng-show="insertForm.employment_status_id.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <div layout-xs="column" layout="row">
+                <div flex class="date-container">
+                    <label>Contract Start</label>
+                    <md-input-container>
+                        <md-datepicker name="date_employed" flex ng-model="dcvm.details.date_employed" md-placeholder="Contract Start" required></md-datepicker>
+                        <div ng-messages="insertForm.date_employed.$error" ng-show="insertForm.date_employed.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>This is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div flex class="date-container">
+                    <label>Contract End</label>
+                    <md-input-container>
+                        <md-datepicker name="date_retired" flex ng-model="dcvm.details.date_retired" md-placeholder="Contract End" required></md-datepicker>
+                        <div ng-messages="insertForm.date_retired.$error" ng-show="insertForm.date_retired.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>This is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <div ng-if="dcvm.loader">
+                <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <md-button type="submit" ng-if="!dcvm.loader" ng-click="dcvm.save(dcvm.details)"
+                           class="send-button md-accent md-raised"
+                           ng-disabled="insertForm.$invalid || insertForm.$pristine"
+                           aria-label="SAVE">
+                    Save
+                </md-button>
+            </div>
+
+            <div layout="row">
+                <md-button class="send-button md-warn md-raised"
+                           aria-label="Close Button" ng-click="dcvm.closeDialog()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

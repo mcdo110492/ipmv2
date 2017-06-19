@@ -1,0 +1,85 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="insertForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">Save Family</span>
+                <md-button class="md-icon-button" ng-click="edcvm.closeDialog()">
+                    <md-tooltip><span>Close</span></md-tooltip>
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <md-input-container class="md-block">
+                <label>Name</label>
+                <input name="family_name" ng-model="edcvm.details.family_name" required md-autofocus>
+                <div ng-messages="insertForm.family_name.$error" ng-show="insertForm.family_name.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Occupation</label>
+                <input name="family_occupation" ng-model="edcvm.details.family_occupation" >
+                <div ng-messages="insertForm.family_occupation.$error" ng-show="insertForm.family_occupation.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Address</label>
+                <input name="family_address" ng-model="edcvm.details.family_address" >
+                <div ng-messages="insertForm.family_address.$error" ng-show="insertForm.family_address.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Relation</label>
+                <input name="family_relation" ng-model="edcvm.details.family_relation" required>
+                <div ng-messages="insertForm.family_relation.$error" ng-show="insertForm.family_relation.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+             <div layout-xs="column" layout="row">
+                <div flex class="date-container">
+                    <label>Birthday</label>
+                    <md-input-container>
+                        <md-datepicker name="family_dob" flex ng-model="edcvm.details.family_dob" md-placeholder="Birthday" required></md-datepicker>
+                        <div ng-messages="insertForm.family_dob.$error" ng-show="insertForm.family_dob.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>This is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <div ng-if="edcvm.loader">
+                <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <md-button type="submit" ng-if="!edcvm.loader" ng-click="edcvm.save()"
+                           class="send-button md-accent md-raised"
+                           ng-disabled="insertForm.$invalid || insertForm.$pristine"
+                           aria-label="SAVE">
+                    Save
+                </md-button>
+            </div>
+
+            <div layout="row">
+                <md-button class="send-button md-warn md-raised"
+                           aria-label="Close Button" ng-click="edcvm.closeDialog()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

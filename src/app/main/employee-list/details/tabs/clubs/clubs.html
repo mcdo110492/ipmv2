@@ -1,0 +1,31 @@
+<div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+  <md-button class="md-raised md-primary" aria-label="Add Family" md-no-ink="true" ng-click="ecvm.openDialog($event)">Add New Training/Seminars</md-button>
+    <md-table-container>
+      <table md-table md-progress="ecvm.promise">
+          <thead md-head>
+              <tr md-row>
+                  <th md-column><span>Club Name</span></th>
+                  <th md-column><span>Position</span></th>
+                  <th md-column><span>Membership</span></th>
+                  <th md-column><span>Actions</span></th>
+              </tr>
+          </thead>
+              <tbody md-body>
+                  <tr md-row ng-repeat="e in ecvm.lists.data">
+                    <td md-cell>
+                        {{e.club_name}}
+                    </td>
+                    <td md-cell>
+                        {{e.club_position}}
+                    </td>
+                    <td md-cell>
+                        {{e.club_membership }}
+                    </td>
+                    <td md-cell>
+                        <md-button class="edit-button md-icon-button" aria-label="Actions" ng-click="ecvm.updateDialog($event,e)"><md-icon md-font-icon="icon-pencil" class="s16"></md-icon></md-button>
+                    </td>
+                  </tr>
+              </tbody>
+          </table>
+      </md-table-container>
+</div>

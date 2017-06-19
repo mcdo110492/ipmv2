@@ -1,0 +1,90 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="insertForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">Save Equipment</span>
+                <md-button class="md-icon-button" ng-click="dcvm.closeDialog()">
+                    <md-tooltip><span>Close</span></md-tooltip>
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <md-input-container class="md-block">
+                <label>Equipment Code</label>
+                <input name="equipment_code" ng-model-options="{debounce:300}" ng-model="dcvm.details.equipment_code" unique-validation key-field="equipment_code" url-path="{{dcvm.urlPath}}" required md-autofocus>
+                <div ng-messages="insertForm.equipment_code.$error" ng-show="insertForm.equipment_code.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                    <div ng-message="unique">
+                        <span>This data is unavailable.</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Body Number</label>
+                <input name="body_no" ng-model-options="{debounce:300}" ng-model="dcvm.details.body_no" unique-validation key-field="body_no" url-path="{{dcvm.urlPath}}" required>
+                <div ng-messages="insertForm.body_no.$error" ng-show="insertForm.body_no.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                    <div ng-message="unique">
+                        <span>This data is unavailable.</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Equipment Model</label>
+                <input name="equipment_model" ng-model="dcvm.details.equipment_model"  required>
+                <div ng-messages="insertForm.equipment_model.$error" ng-show="insertForm.equipment_model.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Equipment Capacity</label>
+                <input type="number" name="equipment_capacity" ng-model="dcvm.details.equipment_capacity"  required>
+                <div ng-messages="insertForm.equipment_capacity.$error" ng-show="insertForm.equipment_capacity.$touched" role="alert">
+                    <div ng-message="required">
+                        <span>This is required</span>
+                    </div>
+                    <div ng-message="number">
+                        <span>Number(s) only</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Equipment Plate Number</label>
+                <input type="number" name="equipment_plate_no" ng-model="dcvm.details.equipment_plate_no"  >
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Equipment Remarks</label>
+                <input name="equipment_remarks" ng-model="dcvm.details.equipment_remarks"  >
+            </md-input-container>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <div ng-if="dcvm.loader">
+                <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <md-button type="submit" ng-if="!dcvm.loader" ng-click="dcvm.save()"
+                           class="send-button md-accent md-raised"
+                           ng-disabled="insertForm.$invalid || insertForm.$pristine"
+                           aria-label="SAVE">
+                    Save
+                </md-button>
+            </div>
+
+            <div layout="row">
+                <md-button class="send-button md-warn md-raised"
+                           aria-label="Close Button" ng-click="dcvm.closeDialog()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
